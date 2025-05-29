@@ -43,3 +43,4 @@ Major Project dependencies: GIT, DOCKER, JAVA, DIRENV, JENV.
 ## Consequences
 
 - pre-configuration is required, and developer should know at least about DIRENV tool and it SHELL integration
+- added several helper scripts into `bin/` folder
