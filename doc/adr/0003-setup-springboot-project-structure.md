@@ -61,6 +61,26 @@ foreman start
 - create `test` profile with verbose logging - `application-test.properties`
 - make `test` profile default for unit tests, `@ActiveProfiles("test")`
 - enable virtual threads for lightweight servers (Tomcat, Jetty, Undertow)
+- libraries versions are defined inside the `gradle/libs.versions.toml` file
+
+```bash
+# run service
+./gradlew services:vehicle:bootRun
+
+# validate endpoint
+http http://localhost:50080/vehicles/nmg52y # expected OK 200
+
+# default error handling
+http http://localhost:50080/vehicles/nmg52y/test # expected NotFound 404
+```
+
+```jsonc
+{
+    // UUID is random on each call
+    "id": "385977df-99df-4fa9-9f1f-1126365aa8f8",
+    "registrationNumber": "nmg52y"
+}
+```
 
 ## References
 
