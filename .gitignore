@@ -1,0 +1,14 @@
+# folder for local secrets setup
+.secrets
+
+# temporary files
+*.~*~
+*.bak
+*.origin
+*.tmp
+*.log
+
+# build artifacts
+build
+reports
+coverage
