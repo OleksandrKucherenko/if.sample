@@ -1,0 +1,42 @@
+# --- Builder Stage ---
+# Using an official GraalVM JDK image with Oracle Linux 9 that has musl preinstalled
+FROM ghcr.io/graalvm/native-image-community:24-muslib AS builder
+USER root
+WORKDIR /app
+
+# Install required packages including DNS tools and musl toolchain for static native image compilation
+RUN microdnf -y install findutils
+RUN microdnf -y install dnf-plugins-core
+
+# copy project files (FIXME: trim to only needed files)
+COPY . .
+
+# Build the native image using Gradle (no daemon, re-use gradle cache)
+# FIXME: build takes a lot of time, >20min (not able to test right now)
+RUN --mount=type=cache,target=/root/.gradle \
+  --mount=type=cache,target=/app/.gradle \
+  ./gradlew :services:vehicle:nativeCompile --no-daemon
+
+# --- Runtime Stage ---
+FROM alpine:3.21 AS runtime
+
+WORKDIR /work/
+
+# Copy the native executable from the builder stage
+# Path adjusted to reflect WORKDIR /app in builder stage
+COPY --from=builder /app/services/vehicle/build/native/nativeCompile/vehicle /work/app
+
+# Ensure the executable has execute permissions
+RUN chmod +x /work/app
+
+# Distroless images run as a non-root user by default. Explicit USER 1001 removed.
+
+# Expose the application port (ensure this matches your Spring Boot config, default is often 8080)
+EXPOSE 50080
+
+# Set minimal environment variables for native image
+ENV LANG='en_US.UTF-8' \
+  LANGUAGE='en_US:en' \
+  LC_ALL='en_US.UTF-8'
+
+ENTRYPOINT ["/work/app"]

@@ -1,0 +1,6 @@
+# Ignore Gradle build output
+build
+!.gradle
+
+!build/libs/*.jar
+!build/native/nativeCompile/vehicle

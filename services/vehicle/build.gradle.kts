@@ -1,6 +1,8 @@
 plugins {
     java
     alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
+    alias(libs.plugins.native)
 }
 
 group = "com.sample.vehicle"
@@ -43,4 +45,18 @@ tasks.withType<Test> {
 
 tasks.test {
     jvmArgs("-javaagent:${mockitoAgent.asPath}")
+}
+
+graalvmNative {
+    binaries {
+        named("main") {
+            val os = System.getProperty("os.name").lowercase()
+            if (os.contains("linux")) {
+                buildArgs.add("--static")
+                buildArgs.add("--libc=musl")
+            } else {
+                println("Skipping --static and --libc=musl for non-Linux OS: $os")
+            }
+        }
+    }
 }

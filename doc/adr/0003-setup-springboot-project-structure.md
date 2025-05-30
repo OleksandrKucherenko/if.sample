@@ -90,3 +90,5 @@ http http://localhost:50080/vehicles/nmg52y/test # expected NotFound 404
 - https://www.baeldung.com/rest-template
 - https://github.com/mockito/mockito, https://site.mockito.org/
 - https://github.com/spring-io/initializr/issues/1590 - Remove Mockito warning from logs
+- https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html - Mockito setup
+- https://steelcityamir.com/blog/testing-log-statements-in-spring-boot/ - logs capturing during tests

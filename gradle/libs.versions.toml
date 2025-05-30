@@ -5,12 +5,15 @@ junitPlatformLauncher = "1.12.2"
 mockito = "5.18.0"
 mockitoInline = "5.2.0"
 springdocOpenapiStarterWebmvcUi = "2.5.0"
+# https://mvnrepository.com/artifact/org.graalvm.buildtools/native-gradle-plugin
+native = "0.10.6"
 
 [libraries]
 spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springBoot" }
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBoot" }
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot" }
 spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "springBoot" }
+
 springdoc-openapi-starter-webmvc-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdocOpenapiStarterWebmvcUi" }
 
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junitPlatformLauncher" }
@@ -21,6 +24,7 @@ mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockito
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
 spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "dependencyManagement" }
+native = { id = "org.graalvm.buildtools.native", version.ref = "native" }
 
 [bundles]
 mockito = ["mockito-core"]
