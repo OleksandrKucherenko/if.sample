@@ -49,6 +49,42 @@ graph LR
   Insurance -->|0..1| Vehicle -.->|reply of Vehicle Service| V[Vehicle]
 ```
 
+```bash
+# build Insurance Service
+./gradlew services:insurance:build
+```
+
+### API Usage example
+
+```java
+// Import classes:
+import com.sample.insurance.clients.vehicle.ApiClient;
+import com.sample.insurance.clients.vehicle.ApiException;
+import com.sample.insurance.clients.vehicle.Configuration;
+import com.sample.insurance.clients.vehicle.models.*;
+import com.sample.insurance.clients.vehicle.api.VehicleApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("http://localhost:50080");
+
+        VehicleApi apiInstance = new VehicleApi(defaultClient);
+        String registrationNumber = "registrationNumber_example"; // String | 
+        try {
+            Vehicle result = apiInstance.getVehicle(registrationNumber);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling VehicleApi#getVehicle");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
 ## Consequences
 
 - Introduce a test user with identification number `920328-4428` (fake user).

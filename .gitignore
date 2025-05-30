@@ -42,3 +42,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# openapi generator
+generated/
+openapitools.json
+temp-openapi-gen
+temp-vehicle-api.json

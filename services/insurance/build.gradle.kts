@@ -1,6 +1,7 @@
 plugins {
     java
     alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
 }
 
 group = "com.sample.insurance"
@@ -22,9 +23,18 @@ repositories {
 
 dependencies {
     implementation(libs.spring.boot.starter)
-
+    implementation(libs.spring.boot.starter.web)
+    implementation(libs.spring.boot.starter.webflux)
+    
+    // OpenAPI documentation
+    implementation(libs.springdoc.openapi.starter.webmvc.ui)
+    implementation(libs.bundles.jackson)
+    
+    // For validation
+    implementation(libs.spring.boot.starter.validation)
+    
+    // Testing
     testImplementation(libs.spring.boot.starter.test)
-
     testRuntimeOnly(libs.junit.platform.launcher)
 }
 
