@@ -1,0 +1,30 @@
+services:
+  vehicle:
+    build:
+      context: ./services/vehicle
+      dockerfile: Dockerfile
+    container_name: vehicle-service
+    ports:
+      - "50080:50080"
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+  insurance:
+    build:
+      context: ./services/insurance
+      dockerfile: Dockerfile
+    container_name: insurance-service
+    ports:
+      - "50081:50081"
+    environment:
+      - VEHICLE_SERVICE_BASE_URL=http://vehicle:50080
+    networks:
+      - microservices-network
+    restart: unless-stopped
+    depends_on:
+      - vehicle
+
+networks:
+  microservices-network:
+    driver: bridge

@@ -90,6 +90,25 @@ http http://localhost:50081/v3/api-docs
 http http://localhost:50081/actuator/health
 ```
 
+### Dockerize Insurance Service
+
+```bash
+# Spring Boot JVM image (default)
+./gradlew services:insurance:bootBuildImage
+
+# show the image details
+docker image inspect insurance:0.0.1-SNAPSHOT | jq
+docker image ls
+# REPOSITORY TAG             SIZE
+# insurance  0.0.1-SNAPSHOT  295MB
+
+# run the container build by gradle plugin
+docker run --name insurance --rm -d -p 50081:50081 insurance:0.0.1-SNAPSHOT
+
+# inspect the container
+dive insurance:0.0.1-SNAPSHOT
+```
+
 ### API Usage example
 
 ```java
