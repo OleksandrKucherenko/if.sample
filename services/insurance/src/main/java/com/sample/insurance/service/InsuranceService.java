@@ -1,6 +1,8 @@
 package com.sample.insurance.service;
 
 import com.sample.insurance.model.Insurance;
+import reactor.core.publisher.Mono;
+
 import java.util.List;
 
 /**
@@ -14,5 +16,5 @@ public interface InsuranceService {
      * @param personalIdNumber The personal identification number of the person
      * @return List of insurances for the person
      */
-    List<Insurance> getInsurancesByPersonalId(String personalIdNumber);
+    Mono<List<Insurance>> getInsurancesByPersonalId(String personalIdNumber);
 }

@@ -13,4 +13,7 @@ public record Vehicle(
     
     @Schema(description = "Registration number of the vehicle")
     String registrationNumber
-) {}
+) {
+    /** Instead of NULL we can use EMPTY object. */
+    public static final Vehicle EMPTY = new Vehicle(new UUID(0L, 0L), "");
+}

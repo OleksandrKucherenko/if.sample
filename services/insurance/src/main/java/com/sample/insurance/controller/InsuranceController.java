@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class InsuranceController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
         }
     )
-    public List<Insurance> getInsurancesForPerson(
+    public Mono<List<Insurance>> getInsurancesForPerson(
             @Parameter(description = "Personal ID number of the person", example = "920328-4428")
             @PathVariable String personalIdNumber) {
         

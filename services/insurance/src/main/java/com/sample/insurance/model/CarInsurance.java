@@ -14,7 +14,7 @@ public class CarInsurance extends Insurance {
     private final String registrationNumber;
     
     @Schema(description = "Vehicle information from Vehicle Service")
-    private Vehicle vehicle;
+    private Vehicle vehicle = null;
     
     public CarInsurance(UUID id, String personalIdNumber, String registrationNumber) {
         super(id, "CAR", Money.usd(3000), personalIdNumber); // $30.00
@@ -29,7 +29,12 @@ public class CarInsurance extends Insurance {
         return vehicle;
     }
     
-    public void setVehicle(Vehicle vehicle) {
+    public CarInsurance setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+        return this;
+    }
+
+    public static CarInsurance from(String personaId, String registrationNumber) {
+        return new CarInsurance(UUID.randomUUID(), personaId, registrationNumber);
     }
 }

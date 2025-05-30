@@ -3,11 +3,17 @@ package com.sample.insurance.service;
 import com.sample.insurance.model.CarInsurance;
 import com.sample.insurance.model.Insurance;
 import com.sample.insurance.model.Vehicle;
-import com.sample.insurance.repository.MockInsuranceRepository;
+import com.sample.insurance.repository.InsuranceRepository;
+import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * Implementation of InsuranceService that uses a mock repository
@@ -15,41 +21,42 @@ import java.util.List;
  */
 @Service
 public class InsuranceServiceImpl implements InsuranceService {
-    
-    private final MockInsuranceRepository insuranceRepository;
-    private final VehicleServiceClient vehicleServiceClient;
-    
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private final InsuranceRepository repository;
+    private final VehicleServiceClient vsc;
+
     @Autowired
     public InsuranceServiceImpl(
-            MockInsuranceRepository insuranceRepository,
+            InsuranceRepository insuranceRepository,
             VehicleServiceClient vehicleServiceClient) {
-        this.insuranceRepository = insuranceRepository;
-        this.vehicleServiceClient = vehicleServiceClient;
+        this.repository = insuranceRepository;
+        this.vsc = vehicleServiceClient;
     }
-    
+
     /**
      * {@inheritDoc}
      * Also enriches car insurances with vehicle information from Vehicle Service.
      */
     @Override
-    public List<Insurance> getInsurancesByPersonalId(String personalIdNumber) {
-        List<Insurance> insurances = insuranceRepository.findByPersonalId(personalIdNumber);
-        
+    public Mono<List<Insurance>> getInsurancesByPersonalId(final String personalIdNumber) {
+        return repository.findByPersonalId(personalIdNumber)
+                .flatMapMany(Flux::fromIterable)
+                .flatMap(this::fetchVehicleInformation)
+                .collectList();
+    }
+
+    /** Extract vehicle information by extra call. */
+    /* package */ Mono<Insurance> fetchVehicleInformation(final Insurance insurance) {
         // Enrich car insurances with vehicle information
-        insurances.stream()
-                .filter(insurance -> insurance instanceof CarInsurance)
-                .map(insurance -> (CarInsurance) insurance)
-                .forEach(carInsurance -> {
-                    try {
-                        Vehicle vehicle = vehicleServiceClient.getVehicleByRegistrationNumber(
-                                carInsurance.getRegistrationNumber());
-                        carInsurance.setVehicle(vehicle);
-                    } catch (Exception e) {
-                        // Log the error but continue processing other insurances
-                        System.err.println("Failed to fetch vehicle information: " + e.getMessage());
-                    }
-                });
-        
-        return insurances;
+        if (insurance instanceof CarInsurance ci) {
+            return vsc.getVehicleByRegistrationNumber(ci.getRegistrationNumber())
+                    .onErrorResume((error) -> {
+                        logger.error("Failed to fetch vehicle information. Fallback to EMPTY.", error);
+                        return Mono.just(Vehicle.EMPTY);
+                    }).map(ci::setVehicle);
+        }
+
+        return Mono.just(insurance);
     }
 }

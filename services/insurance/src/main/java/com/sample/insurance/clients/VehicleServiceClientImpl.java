@@ -5,6 +5,7 @@ import com.sample.insurance.service.VehicleServiceClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
@@ -26,11 +27,10 @@ public class VehicleServiceClientImpl implements VehicleServiceClient {
     }
     
     @Override
-    public Vehicle getVehicleByRegistrationNumber(String registrationNumber) {
+    public Mono<Vehicle> getVehicleByRegistrationNumber(String registrationNumber) {
         return webClient.get()
                 .uri("/vehicles/{registrationNumber}", registrationNumber)
                 .retrieve()
-                .bodyToMono(Vehicle.class)
-                .block(); // Block to get synchronous behavior - in production, this should be handled differently
+                .bodyToMono(Vehicle.class);
     }
 }

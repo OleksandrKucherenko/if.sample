@@ -20,4 +20,8 @@ public class HealthInsurance extends Insurance {
     public String getCoverageLevel() {
         return coverageLevel;
     }
+
+    public static HealthInsurance from(String personaId, String coverageLevel) {
+        return new HealthInsurance(UUID.randomUUID(), personaId, coverageLevel);
+    }
 }

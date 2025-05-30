@@ -1,6 +1,7 @@
 package com.sample.insurance.service;
 
 import com.sample.insurance.model.Vehicle;
+import reactor.core.publisher.Mono;
 
 /**
  * Client interface for communicating with the Vehicle Service.
@@ -14,5 +15,5 @@ public interface VehicleServiceClient {
      * @return Vehicle information
      * @throws RuntimeException if the vehicle information cannot be retrieved
      */
-    Vehicle getVehicleByRegistrationNumber(String registrationNumber);
+    Mono<Vehicle> getVehicleByRegistrationNumber(String registrationNumber);
 }
