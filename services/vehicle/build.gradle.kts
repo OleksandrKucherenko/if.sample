@@ -29,6 +29,8 @@ dependencies {
     implementation(libs.spring.boot.starter.web)
     implementation(libs.spring.boot.starter.actuator)
     implementation(libs.springdoc.openapi.starter.webmvc.ui)
+    
+    implementation(libs.logstash.logback.encoder)
 
     testImplementation(libs.spring.boot.starter.test)
     testImplementation(libs.bundles.mockito)

@@ -5,10 +5,10 @@ junitPlatformLauncher = "1.12.2"
 mockito = "5.18.0"
 mockitoInline = "5.2.0"
 springdocOpenapiStarterWebmvcUi = "2.5.0"
-# https://mvnrepository.com/artifact/org.graalvm.buildtools/native-gradle-plugin
 native = "0.10.6"
 openapiJackson = "0.2.6"
 jackson = "2.19.0"
+logstash-logback-encoder = "8.1"
 
 [libraries]
 spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springBoot" }
@@ -21,6 +21,7 @@ spring-boot-starter-validation = { module = "org.springframework.boot:spring-boo
 springdoc-openapi-starter-webmvc-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdocOpenapiStarterWebmvcUi" }
 
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junitPlatformLauncher" }
+
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
 
@@ -30,8 +31,9 @@ jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations
 jackson-datatype-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
 jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 jackson-dataformat-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version.ref = "jackson" }
-
 openapi-jackson-nullable = { module = "org.openapitools:jackson-databind-nullable", version.ref = "openapiJackson" }
+
+logstash-logback-encoder = { module = "net.logstash.logback:logstash-logback-encoder", version.ref = "logstash-logback-encoder" }
 
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }

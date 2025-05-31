@@ -1,0 +1,23 @@
+<configuration>
+  <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+      <customFields>{"service":"${spring.application.name:-vehicle}"}</customFields>
+    </encoder>
+  </appender>
+  <appender name="JSON_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>logs/app.jsonl</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>logs/app.%d{yyyy-MM-dd}.%i.jsonl</fileNamePattern>
+      <maxHistory>7</maxHistory>
+      <maxFileSize>5MB</maxFileSize>
+    </rollingPolicy>
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+      <customFields>{"service":"${spring.application.name:-vehicle}"}</customFields>
+    </encoder>
+  </appender>
+  <root level="INFO">
+    <appender-ref ref="JSON_CONSOLE" />
+    <appender-ref ref="JSON_FILE" />
+  </root>
+  <logger name="org.springframework.web" level="DEBUG"/>
+</configuration>

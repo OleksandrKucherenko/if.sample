@@ -24,21 +24,12 @@ repositories {
 dependencies {
     implementation(libs.spring.boot.starter)
     implementation(libs.spring.boot.starter.web)
-
-    // Webflux for reactive programming, non-blocking HTTP client/server
     implementation(libs.spring.boot.starter.webflux)
-
-    // Actuator for healthcheck
     implementation(libs.spring.boot.starter.actuator) 
-    
-    // OpenAPI documentation
     implementation(libs.springdoc.openapi.starter.webmvc.ui)
     implementation(libs.bundles.jackson)
-    
-    // For validation
     implementation(libs.spring.boot.starter.validation)
-    
-    // Testing
+    implementation(libs.logstash.logback.encoder)
     testImplementation(libs.spring.boot.starter.test)
     testRuntimeOnly(libs.junit.platform.launcher)
 }
