@@ -9,8 +9,13 @@ services:
     networks:
       - microservices-network
     restart: unless-stopped
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4318
+      - OTEL_SERVICE_NAME=vehicle
+    depends_on:
+      - jaeger
     healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:50080/vehicles/ping || exit 1"]
+      test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:50080/vehicles/ping || exit 1" ]
       interval: 30s
       timeout: 5s
       retries: 3
@@ -25,17 +30,34 @@ services:
       - "50081:50081"
     environment:
       - VEHICLE_SERVICE_BASE_URL=http://vehicle:50080
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4318
+      - OTEL_SERVICE_NAME=insurance
     networks:
       - microservices-network
     restart: unless-stopped
     depends_on:
       - vehicle
+      - jaeger
     healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:50081/insurances/ping || exit 1"]
+      test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:50081/insurances/ping || exit 1" ]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 60s
+
+  # ref: https://github.com/jaegertracing/jaeger/blob/main/examples/hotrod/docker-compose.yml
+  jaeger:
+    image: jaegertracing/jaeger:latest # 2.6.0
+    container_name: jaeger
+    ports:
+      - "16686:16686" # UI port
+      - "4317:4317" # OTLP gRPC
+      - "4318:4318" # OTLP HTTP
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+      - LOG_LEVEL=debug
+    networks:
+      - microservices-network
 
 networks:
   microservices-network:

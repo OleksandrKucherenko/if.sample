@@ -31,6 +31,10 @@ dependencies {
     implementation(libs.springdoc.openapi.starter.webmvc.ui)
     
     implementation(libs.logstash.logback.encoder)
+    
+    // Distributed Tracing with OpenTelemetry
+    implementation(libs.spring.boot.starter.opentelemetry)
+    implementation(libs.micrometer.tracing.bridge.otel)
 
     testImplementation(libs.spring.boot.starter.test)
     testImplementation(libs.bundles.mockito)

@@ -18,3 +18,5 @@
 * [5. Swagger or OpenAPI rest api definition](./doc/adr/0005-swagger-or-openapi-rest-api-definition.md)
 * [6. Dockerize the Vehicle Service](./doc/adr/0006-dockerize-the-vehicle-service.md)
 * [7. Implement Insurance Service](./doc/adr/0007-implement-insurance-service.md)
+* [8. Structured Logs](./doc/adr/0008-structured-logs.md)
+* [9. Distributed Tracing](./doc/adr/0009-distributed-tracing.md)

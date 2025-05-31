@@ -28,12 +28,19 @@ http http://localhost:50081/insurances/person/920328-4428
 - Each request should have own unique traceId.
 	- Typical fields: traceId, spanId, and possibly parentId.
 
+- WebClients should always have registered ObservationRegistry.
 
 ## Consequences
 
 - dependencies: 
   - `io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter` (but keep it named: `spring-boot-starter-opentelemetry` in TOML file)
   - `io.micrometer:micrometer-tracing-bridge-otel`
+
+ref1: https://mvnrepository.com/artifact/io.opentelemetry.instrumentation/opentelemetry-spring-boot-starter, version 2.16.0
+ref2: https://mvnrepository.com/artifact/io.micrometer/micrometer-tracing-bridge-otel, version 1.5.0
+ref3: https://www.jaegertracing.io/docs/2.6/getting-started/, version 2.6.0 , docker image: `jaegertracing/jaeger:2.6.0`
+  - https://hub.docker.com/r/jaegertracing/jaeger
+  - https://hub.docker.com/r/jaegertracing/all-in-one - DEPRECATED!
 
 ```bash
 # run jagger web UI
@@ -44,6 +51,16 @@ http http://localhost:50081/insurances/person/920328-4428
 ```
 
 - Metrics and Logs are not enabled for OpenTelemetry (to make it simple).
+
+## Troubleshooting
+
+```bash
+# verify the content of the JAR binary
+jar tf ./vehicle-0.0.1-SNAPSHOT.jar | grep application
+
+# force Docker Compose to rebuild images before starting containers
+docker compose up --build -d
+```
 
 ## References
 

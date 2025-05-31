@@ -30,6 +30,11 @@ dependencies {
     implementation(libs.bundles.jackson)
     implementation(libs.spring.boot.starter.validation)
     implementation(libs.logstash.logback.encoder)
+    
+    // Distributed Tracing with OpenTelemetry
+    implementation(libs.spring.boot.starter.opentelemetry)
+    implementation(libs.micrometer.tracing.bridge.otel)
+    
     testImplementation(libs.spring.boot.starter.test)
     testRuntimeOnly(libs.junit.platform.launcher)
 }
