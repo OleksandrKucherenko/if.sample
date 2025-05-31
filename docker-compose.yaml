@@ -21,6 +21,21 @@ services:
       retries: 3
       start_period: 60s
 
+  redis:
+    image: redis:8-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - microservices-network
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
   insurance:
     build:
       context: ./services/insurance
@@ -32,12 +47,15 @@ services:
       - VEHICLE_SERVICE_BASE_URL=http://vehicle:50080
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4318
       - OTEL_SERVICE_NAME=insurance
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     networks:
       - microservices-network
     restart: unless-stopped
     depends_on:
       - vehicle
       - jaeger
+      - redis
     healthcheck:
       test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:50081/insurances/ping || exit 1" ]
       interval: 30s

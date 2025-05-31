@@ -35,6 +35,11 @@ dependencies {
     implementation(libs.spring.boot.starter.opentelemetry)
     implementation(libs.micrometer.tracing.bridge.otel)
     
+    // Feature Toggle with Togglz and Redis
+    implementation(libs.bundles.togglz)
+    implementation(libs.spring.boot.starter.data.redis)
+    implementation(libs.jedis)
+    
     testImplementation(libs.spring.boot.starter.test)
     testRuntimeOnly(libs.junit.platform.launcher)
 }

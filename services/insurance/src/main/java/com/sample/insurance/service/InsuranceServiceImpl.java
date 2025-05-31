@@ -3,8 +3,7 @@ package com.sample.insurance.service;
 import com.sample.insurance.model.CarInsurance;
 import com.sample.insurance.model.Insurance;
 import com.sample.insurance.model.Vehicle;
-import com.sample.insurance.repository.InsuranceRepository;
-import org.reactivestreams.Publisher;
+import com.sample.insurance.repository.InsuranceRepositorySelector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
@@ -13,7 +12,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
-import java.util.function.Function;
 
 /**
  * Implementation of InsuranceService that uses a mock repository
@@ -23,15 +21,15 @@ import java.util.function.Function;
 public class InsuranceServiceImpl implements InsuranceService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final InsuranceRepository repository;
-    private final VehicleServiceClient vsc;
+    private final InsuranceRepositorySelector repository;
+    private final FeatureToggleVehicleServiceClient vehicleServiceClient;
 
     @Autowired
     public InsuranceServiceImpl(
-            InsuranceRepository insuranceRepository,
-            VehicleServiceClient vehicleServiceClient) {
-        this.repository = insuranceRepository;
-        this.vsc = vehicleServiceClient;
+            InsuranceRepositorySelector insuranceRepositorySelector,
+            FeatureToggleVehicleServiceClient featureToggleVehicleServiceClient) {
+        this.repository = insuranceRepositorySelector;
+        this.vehicleServiceClient = featureToggleVehicleServiceClient;
     }
 
     /**
@@ -50,7 +48,7 @@ public class InsuranceServiceImpl implements InsuranceService {
     /* package */ Mono<Insurance> fetchVehicleInformation(final Insurance insurance) {
         // Enrich car insurances with vehicle information
         if (insurance instanceof CarInsurance ci) {
-            return vsc.getVehicleByRegistrationNumber(ci.getRegistrationNumber())
+            return vehicleServiceClient.getVehicleByRegistrationNumber(ci.getRegistrationNumber())
                     .onErrorResume((error) -> {
                         logger.error("Failed to fetch vehicle information. Fallback to EMPTY.", error);
                         return Mono.just(Vehicle.EMPTY);

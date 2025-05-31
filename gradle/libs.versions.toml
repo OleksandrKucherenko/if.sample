@@ -11,6 +11,8 @@ jackson = "2.19.0"
 logstash-logback-encoder = "8.1"
 opentelemetry = "2.16.0"
 micrometer-tracing = "1.5.0"
+togglz = "4.4.0"
+jedis = "6.0.0"
 
 [libraries]
 spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springBoot" }
@@ -41,6 +43,14 @@ logstash-logback-encoder = { module = "net.logstash.logback:logstash-logback-enc
 spring-boot-starter-opentelemetry = { module = "io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter", version.ref = "opentelemetry" }
 micrometer-tracing-bridge-otel = { module = "io.micrometer:micrometer-tracing-bridge-otel", version.ref = "micrometer-tracing" }
 
+# Feature toggle integration with Togglz
+spring-boot-starter-togglz = { module = "org.togglz:togglz-spring-boot-starter", version.ref = "togglz" }
+togglz-console = { module = "org.togglz:togglz-console", version.ref = "togglz" }
+togglz-redis = { module = "org.togglz:togglz-redis", version.ref = "togglz" }
+togglz-testing = { module = "org.togglz:togglz-testing", version.ref = "togglz" }
+spring-boot-starter-data-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis", version.ref = "springBoot" }
+jedis = { module = "redis.clients:jedis", version.ref = "jedis" }
+
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
 spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "dependencyManagement" }
@@ -50,3 +60,4 @@ native = { id = "org.graalvm.buildtools.native", version.ref = "native" }
 mockito = ["mockito-core"]
 mockito-agent = ["mockito-inline"]
 jackson = ["jackson-core", "jackson-databind", "jackson-annotations", "jackson-datatype-jdk8", "jackson-datatype-jsr310", "jackson-dataformat-yaml", "openapi-jackson-nullable"]
+togglz = ["spring-boot-starter-togglz", "togglz-console", "togglz-redis"]
