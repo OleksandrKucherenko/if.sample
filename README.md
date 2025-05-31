@@ -20,3 +20,4 @@
 * [7. Implement Insurance Service](./doc/adr/0007-implement-insurance-service.md)
 * [8. Structured Logs](./doc/adr/0008-structured-logs.md)
 * [9. Distributed Tracing](./doc/adr/0009-distributed-tracing.md)
+* [10. Feature Toggle Integration](./doc/adr/0010-feature-toggle-integration.md)
