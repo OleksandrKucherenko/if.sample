@@ -27,17 +27,22 @@ Common logs pattern:
 
 - for tracing requests we want to use [Jagger](https://www.jaegertracing.io/) solution.
 - make jagger a part of the docker-compose environment, but run in separated profile - "UI".
-- dependencies:
-	- `org.springframework.boot:spring-boot-starter-actuator` - Prerequisite for observability
-  - `io.micrometer:micrometer-registry-otlp` - For Metrics
-  - `io.micrometer:micrometer-tracing-bridge-brave` - For Tracing
-  - `io.zipkin.contrib.otel:encoder-brave` - For Latency Visualization
-  - `com.github.loki4j:loki-logback-appender` - For pushing logs out 
+- dependencies: `io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter`
 
+```bash
+# run jagger web UI
+open http://localhost:16686
+
+# trigger API call
+http http://localhost:50081/insurances/person/920328-4428
+```
 
 ## References
 
 - https://github.com/jaegertracing/jaeger/tree/v2.6.0/docker-compose/monitor
 - https://spring.io/blog/2024/10/28/lets-use-opentelemetry-with-spring
 - https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/
-- 
+- https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/getting-started/ 
+- https://github.com/open-telemetry/opentelemetry-java-examples/tree/main/spring-native
+- Vendor-neutral application observability facade
+  https://micrometer.io/, Micrometer provides a facade for the most popular observability systems, allowing you to instrument your JVM-based application code without vendor lock-in. Think SLF4J, but for observability.
