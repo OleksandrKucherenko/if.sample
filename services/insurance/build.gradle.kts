@@ -24,11 +24,19 @@ repositories {
 dependencies {
     implementation(libs.spring.boot.starter)
     implementation(libs.spring.boot.starter.web)
+
+    // WebFlux for reactive programming, Non-blocking
     implementation(libs.spring.boot.starter.webflux)
+
+    // Health Checks, Metrics, etc
     implementation(libs.spring.boot.starter.actuator) 
+
+    // OpenAPI with Springdoc
     implementation(libs.springdoc.openapi.starter.webmvc.ui)
     implementation(libs.bundles.jackson)
     implementation(libs.spring.boot.starter.validation)
+
+    // Structured Logging with Logstash
     implementation(libs.logstash.logback.encoder)
     
     // Distributed Tracing with OpenTelemetry

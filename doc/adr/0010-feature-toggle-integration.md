@@ -39,7 +39,7 @@ We need to demonstrate the Feature Toggle integration, for use cases:
 
   ```mermaid
   graph LR
-    Features -.->|implements| Feature([Feature])
+    TogglzConfig -->|bean| Features -.->|implements| Feature([Feature])
 
   ```
 
@@ -58,11 +58,64 @@ We need to demonstrate the Feature Toggle integration, for use cases:
     IRS -.->|instance| RIR
     ISI(InsuranceServiceImpl) -.->|instance| IRS
     ISI -.->|instance| FTVSC(FeatureToggleVehicleServiceClient)
-    FTVSC -.->|instance| VSC(VehicleServiceClient) -->|implements| VSC1([VehicleServiceClient])
+    FTVSC -.->|instance| VSC(VehicleServiceClientImpl) -->|implements| VSC1([VehicleServiceClient])
     FTVSC -.->|instance| FTS
   ```
 
 ## Testing
+
+### Actuator togglz endpoint
+
+```bash
+http http://localhost:50081/actuator/togglz
+```
+
+Be sure that actuator publishing is activated in `application.properties`: 
+
+```properties
+management.endpoints.web.exposure.include=health,info,togglz
+```
+
+```json
+[
+    {
+        "enabled": false,
+        "metadata": {
+            "attributes": {},
+            "enabledByDefault": false,
+            "groups": [],
+            "label": "Green/Blue Deployment"
+        },
+        "name": "GREEN_BLUE_DEPLOYMENT",
+        "params": {},
+        "strategy": null
+    },
+    {
+        "enabled": false,
+        "metadata": {
+            "attributes": {},
+            "enabledByDefault": false,
+            "groups": [],
+            "label": "Use Redis Insurance Repository"
+        },
+        "name": "USE_REDIS_INSURANCE_REPOSITORY",
+        "params": {},
+        "strategy": null
+    },
+    {
+        "enabled": true,
+        "metadata": {
+            "attributes": {},
+            "enabledByDefault": true,
+            "groups": [],
+            "label": "Use Vehicle Service"
+        },
+        "name": "USE_VEHICLE_SERVICE",
+        "params": {},
+        "strategy": null
+    }
+]
+```
 
 ### Get API features
 
@@ -110,3 +163,8 @@ insurance: java -jar services/insurance/build/libs/insurance-0.0.1-SNAPSHOT.jar 
 - https://www.baeldung.com/spring-togglz - Setup + Unit Tests
 - https://medium.com/tuanhdotnet/methods-for-implementing-feature-flag-management-in-your-spring-boot-application-02d38811a58b
 - https://hub.docker.com/_/redis 
+- https://github.com/heneke/thymeleaf-extras-togglz - can be used for A/B testing on web ui, Thymeleaf template engine integration.
+
+---
+
+[Prev](./0009-distributed-tracing.md) | [Next]()

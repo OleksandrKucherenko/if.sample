@@ -48,6 +48,9 @@ spring-boot-starter-togglz = { module = "org.togglz:togglz-spring-boot-starter",
 togglz-console = { module = "org.togglz:togglz-console", version.ref = "togglz" }
 togglz-redis = { module = "org.togglz:togglz-redis", version.ref = "togglz" }
 togglz-testing = { module = "org.togglz:togglz-testing", version.ref = "togglz" }
+togglz-security = { module = "org.togglz:togglz-spring-security", version.ref = "togglz" }
+
+# Redis for feature toggle storage
 spring-boot-starter-data-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis", version.ref = "springBoot" }
 jedis = { module = "redis.clients:jedis", version.ref = "jedis" }
 

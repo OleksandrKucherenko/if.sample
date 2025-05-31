@@ -6,11 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-import org.springframework.context.annotation.Lazy;
 
 /**
- * A wrapper around the VehicleServiceClient that uses feature toggle to enable/disable
- * calls to the vehicle service.
+ * A wrapper around the VehicleServiceClient that uses feature toggle to
+ * enable/disable calls to the vehicle service.
  */
 @Service
 public class FeatureToggleVehicleServiceClient implements VehicleServiceClient {
@@ -27,7 +26,8 @@ public class FeatureToggleVehicleServiceClient implements VehicleServiceClient {
     }
 
     /**
-     * Get vehicle by registration number, if the USE_VEHICLE_SERVICE feature is enabled.
+     * Get vehicle by registration number, if the USE_VEHICLE_SERVICE feature is
+     * enabled.
      * If the feature is disabled, returns an empty Mono.
      *
      * @param registrationNumber Vehicle registration number

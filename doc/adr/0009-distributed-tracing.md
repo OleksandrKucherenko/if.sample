@@ -70,3 +70,7 @@ docker compose up --build -d
 - https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/getting-started/ 
 - https://github.com/open-telemetry/opentelemetry-java-examples/tree/main/spring-native
 - Vendor-neutral application observability facade [Micrometer](https://micrometer.io/), Micrometer provides a facade for the most popular observability systems, allowing you to instrument your JVM-based application code without vendor lock-in. Think SLF4J, but for observability.
+
+---
+
+[Prev](./0008-structured-logs.md) | [Next](./0010-feature-toggle-integration.md)

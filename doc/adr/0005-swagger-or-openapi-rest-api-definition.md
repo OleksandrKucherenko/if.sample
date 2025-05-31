@@ -42,3 +42,6 @@ http http://localhost:50080/v3/api-docs
 - https://docs.swagger.io/swagger-core/v2.0.0-RC3/apidocs/allclasses-noframe.html
 
 
+---
+
+[Prev](./0004-healthcheck-for-services.md) | [Next](./0006-dockerize-the-vehicle-service.md)

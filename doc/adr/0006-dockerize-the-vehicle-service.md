@@ -218,3 +218,8 @@ RUN microdnf -y install findutils
 
 - https://github.com/search?q=nativeCompile%20path%3ADockerfile&type=code
 - https://github.com/search?q=%22ghcr.io%2Fgraalvm%22+path%3ADockerfile+language%3ADockerfile+gradle&type=code
+
+
+---
+
+[Prev](./0005-swagger-or-openapi-rest-api-definition.md) | [Next](./0007-implement-insurance-service.md)

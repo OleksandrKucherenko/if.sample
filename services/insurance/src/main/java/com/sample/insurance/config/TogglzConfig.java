@@ -25,6 +25,7 @@ public class TogglzConfig {
     private int redisPort;
 
     @Bean
+    @SuppressWarnings("unchecked")
     public FeatureProvider featureProvider() {
         return new EnumBasedFeatureProvider(Features.class);
     }

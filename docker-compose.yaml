@@ -3,7 +3,7 @@ services:
     build:
       context: ./services/vehicle
       dockerfile: Dockerfile
-    container_name: vehicle-service
+    container_name: vehicle
     ports:
       - "50080:50080"
     networks:
@@ -20,6 +20,8 @@ services:
       timeout: 5s
       retries: 3
       start_period: 60s
+    volumes:
+      - ./logs:/app/logs
 
   redis:
     image: redis:8-alpine
@@ -40,7 +42,7 @@ services:
     build:
       context: ./services/insurance
       dockerfile: Dockerfile
-    container_name: insurance-service
+    container_name: insurance
     ports:
       - "50081:50081"
     environment:
@@ -62,6 +64,8 @@ services:
       timeout: 5s
       retries: 3
       start_period: 60s
+    volumes:
+      - ./logs:/app/logs
 
   # ref: https://github.com/jaegertracing/jaeger/blob/main/examples/hotrod/docker-compose.yml
   jaeger:
@@ -76,6 +80,12 @@ services:
       - LOG_LEVEL=debug
     networks:
       - microservices-network
+    healthcheck:
+      test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:16686 || exit 1" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
 
 networks:
   microservices-network:

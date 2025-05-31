@@ -44,3 +44,7 @@ Major Project dependencies: GIT, DOCKER, JAVA, DIRENV, JENV.
 
 - pre-configuration is required, and developer should know at least about DIRENV tool and it SHELL integration
 - added several helper scripts into `bin/` folder
+
+---
+
+[Prev](./0001-project-initialization.md) | [Next](./0003-setup-springboot-project-structure.md)

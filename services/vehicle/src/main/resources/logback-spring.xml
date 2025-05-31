@@ -1,9 +1,7 @@
 <configuration>
   <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
     <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-      <customFields>{"service":"${spring.application.name:-vehicle}"}</customFields>
-      <customFields>{"traceId":"${traceId:-}"}</customFields>
-      <customFields>{"spanId":"${spanId:-}"}</customFields>
+      <customFields>{"service":"${spring.application.name:-vehicle}", "traceId":"${traceId:-}", "spanId":"${spanId:-}"}</customFields>
     </encoder>
   </appender>
   <appender name="JSON_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -14,9 +12,7 @@
       <maxFileSize>5MB</maxFileSize>
     </rollingPolicy>
     <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-      <customFields>{"service":"${spring.application.name:-vehicle}"}</customFields>
-      <customFields>{"traceId":"${traceId:-}"}</customFields>
-      <customFields>{"spanId":"${spanId:-}"}</customFields>
+      <customFields>{"service":"${spring.application.name:-vehicle}", "traceId":"${traceId:-}", "spanId":"${spanId:-}"}</customFields>
     </encoder>
   </appender>
   <root level="INFO">

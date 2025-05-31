@@ -46,7 +46,7 @@ For tracking execution of the multiple services we need unified logging format.
    
    Create `src/main/resources/logback-spring.xml` in both `services/vehicle` and `services/insurance`:
 
-   ```xml
+```xml
   <configuration>
     <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
       <encoder class="net.logstash.logback.encoder.LogstashEncoder">
@@ -70,7 +70,7 @@ For tracking execution of the multiple services we need unified logging format.
     </root>
     <logger name="org.springframework.web" level="DEBUG"/>
   </configuration>
-   ```
+```
 
   Alternative:
 
@@ -113,13 +113,24 @@ For tracking execution of the multiple services we need unified logging format.
      ```
    - Or, if using Docker Compose:
      ```sh
-     docker-compose logs -f | logdy --port 50090
+     docker compose logs -f | logdy --port 50090
      ```
 
 ## Consequences
 
 - disable banner (not play well with structured logs), avoid noise
 
+![Preview Logs](../preview-logdy.png)
+
+- Docker compose should use volumes to map logs folder to local disk logs
+
+```yaml
+volumes:
+  - ./logs:/app/logs
+```
+
+- `logs` folder should pre-created before we run the docker compose services
+ 
 ## References
 - https://github.com/logstash/logstash-logback-encoder
 - https://spring.io/guides/gs/spring-boot/
@@ -128,3 +139,8 @@ For tracking execution of the multiple services we need unified logging format.
 - https://logdy.dev/
 - https://www.baeldung.com/spring-http-logging
 - https://medium.com/@imvtsl/automate-spring-server-logging-6a344d6019c9
+
+
+---
+
+[Prev](./0007-implement-insurance-service.md) | [Next](./0009-distributed-tracing.md)

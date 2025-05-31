@@ -58,3 +58,8 @@ Response structure:
 ## References
 
 - https://www.baeldung.com/spring-boot-health-indicators
+
+
+---
+
+[Prev](./0003-setup-springboot-project-structure.md) | [Next](./0005-swagger-or-openapi-rest-api-definition.md)
