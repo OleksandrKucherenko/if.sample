@@ -1,6 +1,7 @@
 package com.sample.insurance.config;
 
 import org.togglz.core.Feature;
+import org.togglz.core.activation.GradualActivationStrategy;
 import org.togglz.core.annotation.ActivationParameter;
 import org.togglz.core.annotation.DefaultActivationStrategy;
 import org.togglz.core.annotation.EnabledByDefault;
@@ -28,5 +29,8 @@ public enum Features implements Feature {
     USE_REDIS_INSURANCE_REPOSITORY,
 
     @Label("Green/Blue Deployment")
+    @DefaultActivationStrategy(id = GradualActivationStrategy.ID, parameters = {
+            @ActivationParameter(name = GradualActivationStrategy.PARAM_PERCENTAGE, value = "5") // Start with 5% of traffic
+    })
     GREEN_BLUE_DEPLOYMENT;
 }

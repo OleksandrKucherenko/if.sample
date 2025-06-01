@@ -23,8 +23,8 @@ We need to demonstrate the Feature Toggle integration, for use cases:
 - Keep declaration of feature toggles in separate file, for easier updates
 - We should demonstrate three use cases:
   - enable/disable feature - enable/disable call of vehicle service; (USE_VEHICLE_SERVICE)
-  - a/b testing - demonstrate as switching between MockInsuranceRepository and RedisInsuranceRepository for 50% of the request (request DB for insurance data); (USE_REDIS_INSURANCE_REPOSITORY)
-  - green/blue deployment - will be used by CI/CD, we will access feature flag by REST API; (GREEN_BLUE_DEPLOYMENT)
+  - a/b testing - demonstrate as switching between MockInsuranceRepository and RedisInsuranceRepository for 50% of the request (request DB for insurance data); (USE_REDIS_INSURANCE_REPOSITORY, custom LimitedABTestingStrategy with 50% of the request and 100 max activations)
+  - green/blue deployment - will be used by CI/CD, we will access feature flag by REST API; (GREEN_BLUE_DEPLOYMENT, GradualActivationStrategy with 5% of the request)
 
 ## Consequences
 
@@ -178,6 +178,7 @@ insurance: java -jar services/insurance/build/libs/insurance-0.0.1-SNAPSHOT.jar 
 - https://hub.docker.com/_/redis 
 - https://github.com/heneke/thymeleaf-extras-togglz - can be used for A/B testing on web ui, Thymeleaf template engine integration.
 - https://www.togglz.org/documentation/activation-strategies - activation strategies for implementing A/B testing with limited test size.
+- https://upstash.com/ - Redis as a Free Tier (100 MB storage, 10k req/day), perfect for CI/CD management on GitHub Actions (alternatives: https://redis.com/redis-enterprise/cloud/,  https://fly.io/, Render.com - postgresql for free)
 
 ---
 
