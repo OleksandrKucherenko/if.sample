@@ -6,6 +6,7 @@
 | ![Insurance](./doc/preview-http-call.png) | ![Vehicle](./doc/preview-http-verhicle.png) | ![Togglz](./doc/preview-togglz-console.png) |
 | ![Docker Compose](./doc/preview-docker-compose.png) | ![LazyDocker](./doc/preview-lazydocker.png) | ![Gradle Scan](./doc/preview-gradle-scan.png) |
 | ![Unit Tests](./doc/preview-gradle-unit-tests.png) | ![Project Tools](./doc/preview-project-dependencies.png) | ![Task Tree](./doc/preview-gradle-tasks-graph.png) |
+| ![Native Image/GraalVM](./doc/preview-native-binary.png) |||
 
 ## Architecture Decision Records
 
@@ -54,6 +55,7 @@ After that start reading ADRs one-by-one to onboard and understand the project.
     - [x] version control on project tools (e.g. `git`, `docker`, `java`)
   - [x] Dockerize the micro-services
   - [x] Activated Native Image optimization for micro-services (improve startup performance of the apps)
+    - [o] Prepare native image for Alpine Linux execution (MUSL library instead of glibc)
   - [x] Implemented structured logging for unified logs across micro-services (used Logdy, with potential to migrate to ELK stack or alternative)
   - [x] Implemented distributed tracing for unified traces across micro-services (used Jaeger). Observability.
   - [x] Implemented feature toggles (used Togglz)
