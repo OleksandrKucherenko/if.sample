@@ -45,8 +45,12 @@ dependencies {
     
     // Feature Toggle with Togglz and Redis
     implementation(libs.bundles.togglz)
+    implementation(libs.togglz.security)
     implementation(libs.spring.boot.starter.data.redis)
     implementation(libs.jedis)
+    
+    // Spring Security for Togglz admin console, swagger and api (basic auth)
+    implementation(libs.spring.boot.starter.security)
     
     testImplementation(libs.spring.boot.starter.test)
     testRuntimeOnly(libs.junit.platform.launcher)

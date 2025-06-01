@@ -64,6 +64,19 @@ We need to demonstrate the Feature Toggle integration, for use cases:
 
 ## Testing
 
+### Admin console
+
+```bash
+# login: admin
+# password: admin
+http http://localhost:50081/togglz-console
+```
+
+Security configuration done via `SecurityConfig` class and `TogglzConfig` class.
+TogglzConfig.getUserProvider() returns `SpringSecurityUserProvider` with role `ROLE_ADMIN`. This role created by `SecurityConfig` class in `userDetailsService()` method. 
+
+> Note: prefix `ROLE_` is required for role names in Spring Security. So `ROLE_ADMIN` and `ADMIN` represents the same role but in different formats/contexts.
+
 ### Actuator togglz endpoint
 
 ```bash

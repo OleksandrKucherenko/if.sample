@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.togglz.core.manager.EnumBasedFeatureProvider;
 import org.togglz.core.repository.StateRepository;
 import org.togglz.core.spi.FeatureProvider;
-import org.togglz.core.user.SimpleFeatureUser;
 import org.togglz.core.user.UserProvider;
 import org.togglz.redis.RedisStateRepository;
+import org.togglz.spring.security.SpringSecurityUserProvider;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -59,17 +59,13 @@ public class TogglzConfig {
     }
 
     /**
-     * User provider for Togglz admin console.
-     * For demonstration purposes, using a simple admin/admin credentials.
+     * User provider for Togglz admin console that integrates with Spring Security.
+     * This ensures that only authenticated users with the ADMIN role can access the console.
      *
-     * @return User provider with admin rights
+     * @return Spring Security integrated user provider
      */
     @Bean
     public UserProvider getUserProvider() {
-        return () -> {
-            SimpleFeatureUser user = new SimpleFeatureUser("admin");
-            user.setAttribute("username", "admin");
-            return user;
-        };
+        return new SpringSecurityUserProvider("ROLE_ADMIN");
     }
 }
