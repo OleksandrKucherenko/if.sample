@@ -52,7 +52,7 @@ Bonus Points:
   - GitHub Docker Images Repo
   - GitHub Releases for Source Code, Documentation and Binaries
   - Versioning Strategy (Semver, git-cz, semnatic git commits)
-  - (Optional) Native releases. Enable Native images building with Quarkus and GraalVM
+  - (Optional) Native releases. Enable Native images building with GraalVM
  
 5. Documentation and Code Quality:
   - connect static analysis tools
