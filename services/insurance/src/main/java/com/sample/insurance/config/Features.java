@@ -1,6 +1,8 @@
 package com.sample.insurance.config;
 
 import org.togglz.core.Feature;
+import org.togglz.core.annotation.ActivationParameter;
+import org.togglz.core.annotation.DefaultActivationStrategy;
 import org.togglz.core.annotation.EnabledByDefault;
 import org.togglz.core.annotation.Label;
 
@@ -19,6 +21,10 @@ public enum Features implements Feature {
     USE_VEHICLE_SERVICE,
 
     @Label("Use Redis Insurance Repository")
+    @DefaultActivationStrategy(id = LimitedABTestingStrategy.ID, parameters = {
+            @ActivationParameter(name = LimitedABTestingStrategy.PARAM_PERCENTAGE, value = "50"),
+            @ActivationParameter(name = LimitedABTestingStrategy.PARAM_MAX_ACTIVATIONS, value = "100")
+    })
     USE_REDIS_INSURANCE_REPOSITORY,
 
     @Label("Green/Blue Deployment")

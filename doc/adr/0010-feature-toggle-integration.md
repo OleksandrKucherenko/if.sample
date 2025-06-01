@@ -177,6 +177,7 @@ insurance: java -jar services/insurance/build/libs/insurance-0.0.1-SNAPSHOT.jar 
 - https://medium.com/tuanhdotnet/methods-for-implementing-feature-flag-management-in-your-spring-boot-application-02d38811a58b
 - https://hub.docker.com/_/redis 
 - https://github.com/heneke/thymeleaf-extras-togglz - can be used for A/B testing on web ui, Thymeleaf template engine integration.
+- https://www.togglz.org/documentation/activation-strategies - activation strategies for implementing A/B testing with limited test size.
 
 ---
 

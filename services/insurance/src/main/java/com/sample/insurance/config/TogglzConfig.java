@@ -40,7 +40,7 @@ public class TogglzConfig {
         poolConfig.setMaxTotal(10);
         poolConfig.setMaxIdle(5);
         poolConfig.setMinIdle(1);
-        
+
         return new JedisPool(poolConfig, redisHost, redisPort, 2000);
     }
 
@@ -60,7 +60,8 @@ public class TogglzConfig {
 
     /**
      * User provider for Togglz admin console that integrates with Spring Security.
-     * This ensures that only authenticated users with the ADMIN role can access the console.
+     * This ensures that only authenticated users with the ADMIN role can access the
+     * console.
      *
      * @return Spring Security integrated user provider
      */
