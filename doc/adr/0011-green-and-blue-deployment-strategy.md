@@ -30,7 +30,7 @@ Major principles of the Deployment process/strategy:
   - Manual deployment, triggered by developer:
     - Deploy specific version of the application;
     - Rollback to a specific version of the application;
-    - Forced deployment of a specific version;
+    - Forced deployment of a specific version (break glass);
   - Lock and UnLock the deployment to a specific environments
   - Re-deploy (or Restart the application, re-trigger migrations and etc)
 - Deployment based on assumption that we host our microservice on cloud, having multiple instances of the same application with load balancer in front of them.
@@ -186,7 +186,12 @@ This strategy provides:
 - https://megamorf.gitlab.io/2021/04/22/nginx-blue-green-deployment-workflow/
 - https://www.geeksforgeeks.org/blue-green-deployments-with-docker/
 - https://github.com/ianlewis/kubernetes-bluegreen-deployment-tutorial
+- https://github.com/AgusRdz/blue-green-local - Blue-Green Deployment in a Local Environment with Docker
+- https://docs.aws.amazon.com/whitepapers/latest/blue-green-deployments/welcome.html - AWS Blue-Green Deployment
+- https://medium.com/containers-101/the-simplest-guide-to-using-blue-green-deployment-in-kubernetes-d46190e762a6
+- https://medium.com/capital-one-tech/seamless-blue-green-deployment-using-aws-codedeploy-4c36c0bbeef4
+- https://thomasbandt.com/blue-green-deployments
 
 ---
 
-[Prev](./0010-feature-toggle-integration.md) | [Next](./0012-)
+[Prev](./0010-feature-toggle-integration.md) | [Next](./0012-establish-quality-standards.md)

@@ -22,6 +22,7 @@
 * [9. Distributed Tracing](./doc/adr/0009-distributed-tracing.md)
 * [10. Feature Toggle Integration](./doc/adr/0010-feature-toggle-integration.md)
 * [11. Green And Blue Deployment Strategy](./doc/adr/0011-green-and-blue-deployment-strategy.md)
+* [12. Establish Quality Standards](./doc/adr/0012-establish-quality-standards.md)
 
 ## Initial Setup
 
@@ -84,7 +85,7 @@ After that start reading ADRs one-by-one to onboard and understand the project.
     - [ ] Performance/Load tests (Stubs, mockserver, OHA, WRK, K6, cadvisor)
     - [ ] Contract tests (Pact, WireMock)
 
-- [ ] Continues Delivery
+- [o] Continues Delivery (DEFINED in [ADR-0011](./doc/adr/0011-green-and-blue-deployment-strategy.md))
   - [ ] Implemented CI/CD pipeline (Github actions)
     - [x] Based on running Gradle build tasks of different types (e.g. `build`, `test`, `integrationTest`, `dockerBuild`, `dockerPush`). Build fails if one of the tasks fails.
     - [ ] Implemented Green/Blue deployment concept (used Github actions to demo the approach)
@@ -94,11 +95,12 @@ After that start reading ADRs one-by-one to onboard and understand the project.
     - [ ] Scheduled delivery
     - [ ] "Shadow modes" (Deploy new version alongside old, compare results of old and new implementation, switch to new version if results are better)
     - [ ] Environments support (e.g. local dev, staging, production, performance, etc.)
+  - [ ] Use Terraform, LocalStack - for local deve environment setup that emulates AWS cloud environment
 
 - [ ] Documentation and Code Quality
   - [x] Used ADRs to document decisions on project (perfect for AI and human to understand project structure and decisions)
     - [x] Details are part of each ADR
-  - [ ] Quality Assurance
+  - [ ] Quality Assurance (DEFINED in [ADR-0012](./doc/adr/0012-establish-quality-standards.md))
     - [ ] Code coverage (JaCoCo)
     - [ ] Static code analysis (Checkstyle, PMD)
     - [ ] Code quality (SonarQube)
