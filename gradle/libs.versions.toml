@@ -13,6 +13,7 @@ opentelemetry = "2.16.0"
 micrometer-tracing = "1.5.0"
 togglz = "4.4.0"
 jedis = "6.0.0"
+taskTree = "4.0.1"
 
 [libraries]
 spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springBoot" }
@@ -59,6 +60,7 @@ jedis = { module = "redis.clients:jedis", version.ref = "jedis" }
 spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
 spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "dependencyManagement" }
 native = { id = "org.graalvm.buildtools.native", version.ref = "native" }
+task-tree = { id = "com.dorongold.task-tree", version.ref = "taskTree" }
 
 [bundles]
 mockito = ["mockito-core"]
