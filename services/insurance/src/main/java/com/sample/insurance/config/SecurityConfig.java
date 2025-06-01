@@ -24,17 +24,27 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(authz -> authz
-                // Allow public access to these endpoints
-                .requestMatchers("/actuator/**", "/swagger-ui/**", "/v3/api-docs/**", "/api/**").permitAll()
-                // Require authentication for Togglz console
-                .requestMatchers("/togglz-console/**").hasRole("ADMIN")
-                // Require authentication for any other request
-                .anyRequest().authenticated()
-            )
-            // Use HTTP Basic authentication for Togglz console
-            .httpBasic(withDefaults());
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(authz -> authz
+                        // Allow public access to these endpoints
+                        .requestMatchers(
+                                // metrics and health checks
+                                "/actuator/**",
+                                // swagger ui
+                                "/swagger-ui/**",
+                                // api docs
+                                "/v3/api-docs/**",
+                                // api (reserved but not used)
+                                "/api/**",
+                                // insurances (our current API)
+                                "/insurances/**")
+                        .permitAll()
+                        // Require authentication for Togglz console
+                        .requestMatchers("/togglz-console/**").hasRole("ADMIN")
+                        // Require authentication for any other request
+                        .anyRequest().authenticated())
+                // Use HTTP Basic authentication for Togglz console
+                .httpBasic(withDefaults());
 
         return http.build();
     }
