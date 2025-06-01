@@ -21,6 +21,7 @@
 * [8. Structured Logs](./doc/adr/0008-structured-logs.md)
 * [9. Distributed Tracing](./doc/adr/0009-distributed-tracing.md)
 * [10. Feature Toggle Integration](./doc/adr/0010-feature-toggle-integration.md)
+* [11. Green And Blue Deployment Strategy](./doc/adr/0011-green-and-blue-deployment-strategy.md)
 
 ## Initial Setup
 
@@ -127,3 +128,5 @@ By unified Redis client we can reduce the number of the dependencies and make pr
 3. Not all solutions start to work immediately. Latest versions of each tool usually require some additional steps to make it work.
 
 Example: Jaeger does not want to work gRPC out of the box. I have to switch solution to HTTP/protobuf port.
+
+4. Cross Platform development will require additional steps to make it work well. 
