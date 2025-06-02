@@ -15,7 +15,7 @@ need to understand the sequence of calls between multiple services, latency and 
 
 - Use [Jagger](https://www.jaegertracing.io/) solution.
 - Enable open telemetry in services.
-- Make jagger a part of the docker-compose environment, but run in separated profile - "UI".
+- Make jagger a part of the docker-compose environment.
 
 ```bash
 # run jagger web UI
@@ -51,6 +51,8 @@ http http://localhost:50081/insurances/person/920328-4428
 ```
 
 - Metrics and Logs are not enabled for OpenTelemetry (to make it simple).
+
+![Preview](../preview-jaeger-tracing.png)
 
 ## Troubleshooting
 

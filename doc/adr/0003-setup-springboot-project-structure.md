@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-- use https://start.spring.io - as a bootstrap for the project: Gradle Kotlin, Java, Spring Boot v3.5, Java v24 (Amazon Corrito)
+- use https://start.spring.io - as a bootstrap for the project: Gradle Kotlin, Java, Spring Boot v3.5, Java v24 (Amazon Corretto)
 
 ## Decision
 

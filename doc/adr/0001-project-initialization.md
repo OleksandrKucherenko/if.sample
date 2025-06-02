@@ -31,13 +31,13 @@ Bonus Points:
 1. Keep it simple, focus on major points:
   - keep it simplified, without deep modifications in configurations, failure protections, monitoring etc
   - demonstrate the concept, not the full solution
-  - document descision via ADRs
+  - document descisions via ADRs
 
 2. Architecture and Implementation - covered by SpringBoot framework and project structure
   - Use Gradle Kotlin for builds configuration
   - Dockerize the solution
   - Use Docker-Compose to run all locally
-  - use https://start.spring.io - as a bootstrap for the project: Gradle Kotlin, Java, Spring Boot v3.5, Java v24 (Amazon Corrito)
+  - use https://start.spring.io - as a bootstrap for the project: Gradle Kotlin, Java, Spring Boot v3.5, Java v24 (Amazon Corretto)
   - Use OpenAPI generator tool for converting API definitions to Client code
   - Use Togglz (https://togglz.org) as a feature toggle solution (alternatives: Firebase Runtime Configuration, many 3rd party solutions available)
   - Use Redis as a permanent storage for feature toggles, a/b testing and etc.
@@ -51,7 +51,7 @@ Bonus Points:
   - GitHub Actions (cons: hard to run locally, ACT tool is not the easiest)
   - GitHub Docker Images Repo
   - GitHub Releases for Source Code, Documentation and Binaries
-  - Versioning Strategy (Semver, git-cz, semnatic git commits)
+  - Versioning Strategy (Semver, git-cz, semantic git commits)
   - (Optional) Native releases. Enable Native images building with GraalVM
  
 5. Documentation and Code Quality:

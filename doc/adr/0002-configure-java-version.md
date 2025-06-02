@@ -34,6 +34,11 @@ brew install jenv
 
 # Add Corretto 24 into JENV list of versions
 jenv add /Library/Java/JavaVirtualMachines/amazon-corretto-24.jdk/Contents/Home
+
+# set local Corretto 24 as default
+jenv local corretto64-24.0.1
+
+# setup DIRENV dependency checks
 ```
 
 Major Project dependencies: GIT, DOCKER, JAVA, DIRENV, JENV.

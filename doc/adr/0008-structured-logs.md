@@ -12,9 +12,9 @@ For tracking execution of the multiple services we need unified logging format.
 
 ## Decision
 
-- Use Logback with JSON layout for structured logging.
+- Use Logback/Logstash with JSON layout for structured logging.
 - We should enhance your logs with trace context fields for correlation:
-    - Typical fields: traceId, spanId, and possibly parentId.
+    - Typical fields: traceId, spanId, and possibly parentId, service name.
 - Use Logdy for logs inspection.
 - Enabled logs into JSONL format on disk. Rotated logs are stored in `logs` directory. 
   - Keep logs for 7 days.

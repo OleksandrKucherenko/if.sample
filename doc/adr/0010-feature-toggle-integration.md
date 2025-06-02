@@ -69,7 +69,7 @@ We need to demonstrate the Feature Toggle integration, for use cases:
 ```bash
 # login: admin
 # password: admin
-http http://localhost:50081/togglz-console
+open http://localhost:50081/togglz-console
 ```
 
 Security configuration done via `SecurityConfig` class and `TogglzConfig` class.
