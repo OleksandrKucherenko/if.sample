@@ -1,12 +1,12 @@
 # IF Sample
 
-| Preview #1 | Preview #2                                               | Preview #3 |
-| --- |----------------------------------------------------------| --- |
-| ![Foreman](./doc/preview-foreman-logs.png) | ![Logdy](./doc/preview-logdy.png)                        | ![Jaeger](./doc/preview-jaeger-tracing.png) |
-| ![Insurance](./doc/preview-http-call.png) | ![Vehicle](./doc/preview-http-verhicle.png)              | ![Togglz](./doc/preview-togglz-console.png) |
-| ![Docker Compose](./doc/preview-docker-compose.png) | ![LazyDocker](./doc/preview-lazydocker.png)              | ![Gradle Scan](./doc/preview-gradle-scan.png) |
-| ![Unit Tests](./doc/preview-gradle-unit-tests.png) | ![Project Tools](./doc/preview-project-dependencies.png) | ![Task Tree](./doc/preview-gradle-tasks-graph.png) |
-| ![Native Image/GraalVM](./doc/preview-native-binary.png) | ![Redis UI](./doc/preview-redis-webui.png)               ||
+| Preview #1 | Preview #2                                               | Preview #3                                              |
+| --- |----------------------------------------------------------|---------------------------------------------------------|
+| ![Foreman](./doc/preview-foreman-logs.png) | ![Logdy](./doc/preview-logdy.png)                        | ![Jaeger](./doc/preview-jaeger-tracing.png)             |
+| ![Insurance](./doc/preview-http-call.png) | ![Vehicle](./doc/preview-http-verhicle.png)              | ![Togglz](./doc/preview-togglz-console.png)             |
+| ![Docker Compose](./doc/preview-docker-compose.png) | ![LazyDocker](./doc/preview-lazydocker.png)              | ![Gradle Scan](./doc/preview-gradle-scan.png)           |
+| ![Unit Tests](./doc/preview-gradle-unit-tests.png) | ![Project Tools](./doc/preview-project-dependencies.png) | ![Task Tree](./doc/preview-gradle-tasks-graph.png)      |
+| ![Native Image/GraalVM](./doc/preview-native-binary.png) | ![Redis UI](./doc/preview-redis-webui.png)               | ![Docker Image](./doc/preview-docker-image-details.png) |
 
 ## Architecture Decision Records
 
