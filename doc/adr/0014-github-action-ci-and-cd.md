@@ -27,6 +27,18 @@ the Docker images will be assigned the following tags after publishing:
 
 ![Setup Permissions](../setup-github-actions-permissions.png)
 
+- Implement cleanup workflow that will delete old untagged (versions without version tag) images from the registry. The delete-package-versions action with delete-only-untagged-versions: true will:
+
+  - Keep: Images with semantic version tags (from type=semver,pattern={{version}})
+  - Delete: Images with only branch or SHA tags that are older than 30 days
+
+This means temporary builds from branches and commit SHAs will get cleaned up after 30 days, while your properly versioned releases (tagged with semantic versions like v1.0.0) will be preserved indefinitely.
+
+## References
+
+- https://github.com/actions/delete-package-versions
+- 
+
 ---
 
 [Prev](./0013-test-containers-setup.md) | [Next]()
