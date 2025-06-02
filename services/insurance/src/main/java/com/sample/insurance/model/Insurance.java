@@ -1,12 +1,21 @@
 package com.sample.insurance.model;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.UUID;
 
 /**
  * Base insurance class representing any type of insurance.
  */
 @Schema(description = "Base insurance entity")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = CarInsurance.class, name = "CAR"),
+        @JsonSubTypes.Type(value = HealthInsurance.class, name = "HEALTH"),
+        @JsonSubTypes.Type(value = PetInsurance.class, name = "PET")
+})
 public abstract class Insurance {
     
     @Schema(description = "Unique identifier of the insurance")

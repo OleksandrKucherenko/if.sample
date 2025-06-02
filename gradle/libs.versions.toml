@@ -14,6 +14,7 @@ micrometer-tracing = "1.5.0"
 togglz = "4.4.0"
 jedis = "6.0.0"
 taskTree = "4.0.1"
+testcontainers = "1.21.1" # https://mvnrepository.com/artifact/org.testcontainers
 
 [libraries]
 spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springBoot" }
@@ -51,10 +52,21 @@ togglz-console = { module = "org.togglz:togglz-console", version.ref = "togglz" 
 togglz-redis = { module = "org.togglz:togglz-redis", version.ref = "togglz" }
 togglz-testing = { module = "org.togglz:togglz-testing", version.ref = "togglz" }
 togglz-security = { module = "org.togglz:togglz-spring-security", version.ref = "togglz" }
+togglz-junit = { module = "org.togglz:togglz-junit", version.ref = "togglz" }
 
 # Redis for feature toggle storage
 spring-boot-starter-data-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis", version.ref = "springBoot" }
 jedis = { module = "redis.clients:jedis", version.ref = "jedis" }
+
+# Testcontainers
+testcontainers = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
+testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
+testcontainers-spock = { module = "org.testcontainers:spock", version.ref = "testcontainers" }
+testcontainers-nginx = { module = "org.testcontainers:nginx", version.ref = "testcontainers" }
+testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+testcontainers-mongodb = { module = "org.testcontainers:mongodb", version.ref = "testcontainers" }
+testcontainers-kafka = { module = "org.testcontainers:kafka", version.ref = "testcontainers" }
+testcontainers-redis = { module = "org.testcontainers:redis", version.ref = "testcontainers" }
 
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
@@ -67,3 +79,4 @@ mockito = ["mockito-core"]
 mockito-agent = ["mockito-inline"]
 jackson = ["jackson-core", "jackson-databind", "jackson-annotations", "jackson-datatype-jdk8", "jackson-datatype-jsr310", "jackson-dataformat-yaml", "openapi-jackson-nullable"]
 togglz = ["spring-boot-starter-togglz", "togglz-console", "togglz-redis"]
+testcontainers = ["testcontainers", "testcontainers-junit-jupiter"]

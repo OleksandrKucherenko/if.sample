@@ -87,6 +87,26 @@ services:
       retries: 3
       start_period: 20s
 
+  # Redis Web UI for database management, use http://localhost:8001 to open WEBUI
+  # use `redis:6379` to connect, username `default`, password keep empty.
+  redisinsight:
+    image: redis/redisinsight:latest
+    container_name: redisinsight
+    profiles: ["ui"]
+    ports:
+      - "8001:5540"
+    networks:
+      - microservices-network
+    restart: unless-stopped
+    depends_on:
+      - redis
+    healthcheck:
+      test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:5540 || exit 1" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
 networks:
   microservices-network:
     driver: bridge

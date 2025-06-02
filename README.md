@@ -1,12 +1,12 @@
 # IF Sample
 
-| Preview #1 | Preview #2 | Preview #3 |
-| --- | --- | --- |
-| ![Foreman](./doc/preview-foreman-logs.png) | ![Logdy](./doc/preview-logdy.png) | ![Jaeger](./doc/preview-jaeger-tracing.png) |
-| ![Insurance](./doc/preview-http-call.png) | ![Vehicle](./doc/preview-http-verhicle.png) | ![Togglz](./doc/preview-togglz-console.png) |
-| ![Docker Compose](./doc/preview-docker-compose.png) | ![LazyDocker](./doc/preview-lazydocker.png) | ![Gradle Scan](./doc/preview-gradle-scan.png) |
+| Preview #1 | Preview #2                                               | Preview #3 |
+| --- |----------------------------------------------------------| --- |
+| ![Foreman](./doc/preview-foreman-logs.png) | ![Logdy](./doc/preview-logdy.png)                        | ![Jaeger](./doc/preview-jaeger-tracing.png) |
+| ![Insurance](./doc/preview-http-call.png) | ![Vehicle](./doc/preview-http-verhicle.png)              | ![Togglz](./doc/preview-togglz-console.png) |
+| ![Docker Compose](./doc/preview-docker-compose.png) | ![LazyDocker](./doc/preview-lazydocker.png)              | ![Gradle Scan](./doc/preview-gradle-scan.png) |
 | ![Unit Tests](./doc/preview-gradle-unit-tests.png) | ![Project Tools](./doc/preview-project-dependencies.png) | ![Task Tree](./doc/preview-gradle-tasks-graph.png) |
-| ![Native Image/GraalVM](./doc/preview-native-binary.png) |||
+| ![Native Image/GraalVM](./doc/preview-native-binary.png) | ![Redis UI](./doc/preview-redis-webui.png)               ||
 
 ## Architecture Decision Records
 
@@ -31,6 +31,7 @@
 * [10. Feature Toggle Integration](./doc/adr/0010-feature-toggle-integration.md)
 * [11. Green And Blue Deployment Strategy](./doc/adr/0011-green-and-blue-deployment-strategy.md)
 * [12. Establish Quality Standards](./doc/adr/0012-establish-quality-standards.md)
+* [13. Test Containers Setup](./doc/adr/0013-test-containers-setup.md)
 
 ## Initial Setup
 
@@ -70,7 +71,7 @@ After that start reading ADRs one-by-one to onboard and understand the project.
     - [ ] API versioning (or in api path, or by custom header attribute)
   - [ ] Errors handling:
     - [x] Fallback to EMPTY data (prevent NULLs)
-    - [x] Deafult SpringBoot error handling (e.g. 404)
+    - [x] Default SpringBoot error handling (e.g. 404)
     - [ ] Exceptions raising, Custom error codes
   - [ ] Fault tolerance:
     - [ ] Circuit Breaker (Prevent cascading failures by short-circuiting calls to services that are failing or slow. Use libraries like Resilience4j)
@@ -86,11 +87,11 @@ After that start reading ADRs one-by-one to onboard and understand the project.
     - [ ] Streams support, deliver data in stream continuously to the client
     
 - [x] Testing Approaches
-  - [ ] Implemented several types of tests
+  - [o] Implemented several types of tests
     - [x] Test profile (springboot test profile with verbose logs)
     - [x] Unit tests (JUnit 5, Mockito)
     - [x] Integration tests (Spring Boot Test, RestTemplate)
-    - [ ] End-to-end tests (testcontainers)
+    - [x] End-to-end tests (testcontainers)
     - [ ] Performance/Load tests (Stubs, mockserver, OHA, WRK, K6, cadvisor)
     - [ ] Contract tests (Pact, WireMock)
 

@@ -31,7 +31,7 @@ dependencies {
     // Health Checks, Metrics, etc
     implementation(libs.spring.boot.starter.actuator) 
 
-    // OpenAPI with Springdoc
+    // OpenAPI with SpringDoc
     implementation(libs.springdoc.openapi.starter.webmvc.ui)
     implementation(libs.bundles.jackson)
     implementation(libs.spring.boot.starter.validation)
@@ -54,6 +54,10 @@ dependencies {
     
     testImplementation(libs.spring.boot.starter.test)
     testRuntimeOnly(libs.junit.platform.launcher)
+    
+    // TestContainers, e2e tests
+    testImplementation(libs.bundles.testcontainers)
+    testImplementation(libs.togglz.junit)
 }
 
 tasks.withType<Test> {

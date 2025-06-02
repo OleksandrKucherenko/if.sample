@@ -2,6 +2,8 @@ package com.sample.insurance.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.UUID;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Car insurance product with fixed monthly cost of $30.
@@ -16,7 +18,11 @@ public class CarInsurance extends Insurance {
     @Schema(description = "Vehicle information from Vehicle Service")
     private Vehicle vehicle = null;
     
-    public CarInsurance(UUID id, String personalIdNumber, String registrationNumber) {
+    @JsonCreator
+    public CarInsurance(
+            @JsonProperty("id") UUID id, 
+            @JsonProperty("personalIdNumber") String personalIdNumber, 
+            @JsonProperty("registrationNumber") String registrationNumber) {
         super(id, "CAR", Money.usd(3000), personalIdNumber); // $30.00
         this.registrationNumber = registrationNumber;
     }
