@@ -32,6 +32,7 @@
 * [11. Green And Blue Deployment Strategy](./doc/adr/0011-green-and-blue-deployment-strategy.md)
 * [12. Establish Quality Standards](./doc/adr/0012-establish-quality-standards.md)
 * [13. Test Containers Setup](./doc/adr/0013-test-containers-setup.md)
+* [14. Github Action CI and CD](./doc/adr/0014-github-action-ci-and-cd.md)
 
 ## Initial Setup
 
