@@ -83,13 +83,13 @@ After that start reading ADRs one-by-one to onboard and understand the project.
     - [ ] Event Driven Architecture (https://microservices.io/patterns/data/event-driven-architecture.html)
     - [ ] CQRS (Command Query Responsibility Segregation), etc.
     - [ ] Quota (limit the number of requests per tenant, Requests per minute, etc.)
-  - [ ] Best practicies (performance, security, etc.)
+  - [ ] Best practices (performance, security, etc.)
     - [ ] REST API special design for heavy operations, batches, jobs
     - [ ] Streams support, deliver data in stream continuously to the client
     
 - [x] Testing Approaches
   - [o] Implemented several types of tests
-    - [x] Test profile (springboot test profile with verbose logs)
+    - [x] Test profile (spring-boot test profile with verbose logs)
     - [x] Unit tests (JUnit 5, Mockito)
     - [x] Integration tests (Spring Boot Test, RestTemplate)
     - [x] End-to-end tests (testcontainers)
@@ -97,7 +97,7 @@ After that start reading ADRs one-by-one to onboard and understand the project.
     - [ ] Contract tests (Pact, WireMock)
 
 - [o] Continues Delivery (DEFINED in [ADR-0011](./doc/adr/0011-green-and-blue-deployment-strategy.md))
-  - [ ] Implemented CI/CD pipeline (Github actions)
+  - [o] Implemented CI/CD pipeline (Github actions)
     - [x] Based on running Gradle build tasks of different types (e.g. `build`, `test`, `integrationTest`, `dockerBuild`, `dockerPush`). Build fails if one of the tasks fails.
     - [ ] Implemented Green/Blue deployment concept (used Github actions to demo the approach)
     - [ ] Deployment versioning strategy (binaries versioning, docker tags, git tags, semver)
@@ -106,7 +106,7 @@ After that start reading ADRs one-by-one to onboard and understand the project.
     - [ ] Scheduled delivery
     - [ ] "Shadow modes" (Deploy new version alongside old, compare results of old and new implementation, switch to new version if results are better)
     - [ ] Environments support (e.g. local dev, staging, production, performance, etc.)
-  - [ ] Use Terraform, LocalStack - for local deve environment setup that emulates AWS cloud environment
+  - [ ] Use Terraform, LocalStack - for local dev environment setup that emulates AWS cloud environment
 
 - [ ] Documentation and Code Quality
   - [x] Used ADRs to document decisions on project (perfect for AI and human to understand project structure and decisions)
@@ -135,11 +135,20 @@ After that start reading ADRs one-by-one to onboard and understand the project.
 
 2. more and  more features enabled makes a project dependencies more complex and bloated. 
 
-As example: multiple redis client dependencies involed into project, but do we actually need this? 
+As example: multiple redis client dependencies involved into project, but do we actually need this? 
 By unified Redis client we can reduce the number of the dependencies and make project attack landscape smaller.
 
 3. Not all solutions start to work immediately. Latest versions of each tool usually require some additional steps to make it work.
 
 Example: Jaeger does not want to work gRPC out of the box. I have to switch solution to HTTP/protobuf port.
 
-4. Cross Platform development will require additional steps to make it work well. 
+4. Cross Platform development will require additional steps to make it work well.
+
+5. Engineering perfection in each task raise the time estimates a lot. 
+
+Just to implement CI/CD pipeline that covers all documentated cases will be required several days, due to 
+low testability of the GitHub Actions on local environment (very time-consuming process).
+
+6. There are many other Alternatives in how to implement each step and task. Just by choosing 
+alternative to SpringBoot framework (Quarkus, Micronaut, Vertx, Ktor, etc.) will completely different 
+dependencies and setup.
