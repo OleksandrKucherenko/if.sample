@@ -1,3 +1,5 @@
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/OleksandrKucherenko/if.sample)
+
 # IF Sample
 
 | Preview #1 | Preview #2                                               | Preview #3                                              |
