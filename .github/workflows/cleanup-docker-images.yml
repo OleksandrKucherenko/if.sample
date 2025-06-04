@@ -25,22 +25,50 @@ jobs:
           echo "owner=$(echo ${GITHUB_REPOSITORY} | cut -d '/' -f 1 | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
           echo "repo_simple=$(echo ${GITHUB_REPOSITORY} | cut -d '/' -f 2 | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
 
-      - name: Delete old untagged Docker images
-        uses: actions/delete-package-versions@v4
+      - name: Check if vehicle package exists
+        id: check_vehicle
+        continue-on-error: true
+        run: |
+          response=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/users/${{ steps.repo_name.outputs.owner }}/packages/container/${{ steps.repo_name.outputs.repo_simple }}%2Fvehicle")
+          if echo "$response" | grep -q '"name"'; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Delete old untagged Docker images for vehicle service
+        if: steps.check_vehicle.outputs.exists == 'true'
+        uses: actions/delete-package-versions@v5
+        continue-on-error: true
         with:
-          package-name: '${{ steps.repo_name.outputs.owner }}/${{ steps.repo_name.outputs.repo_simple }}/vehicle'
+          package-name: '${{ steps.repo_name.outputs.repo_simple }}/vehicle'
           package-type: 'container'
           min-versions-to-keep: 5
           delete-only-untagged-versions: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          age: '30d'
+
+      - name: Check if insurance package exists
+        id: check_insurance
+        continue-on-error: true
+        run: |
+          response=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/users/${{ steps.repo_name.outputs.owner }}/packages/container/${{ steps.repo_name.outputs.repo_simple }}%2Finsurance")
+          if echo "$response" | grep -q '"name"'; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Delete old untagged Docker images for insurance service
-        uses: actions/delete-package-versions@v4
+        if: steps.check_insurance.outputs.exists == 'true'
+        uses: actions/delete-package-versions@v5
+        continue-on-error: true
         with:
-          package-name: '${{ steps.repo_name.outputs.owner }}/${{ steps.repo_name.outputs.repo_simple }}/insurance'
+          package-name: '${{ steps.repo_name.outputs.repo_simple }}/insurance'
           package-type: 'container'
           min-versions-to-keep: 5
           delete-only-untagged-versions: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          age: '30d'
